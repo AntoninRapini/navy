@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat Feb  4 05:43:27 2017 Antonin Rapini
-** Last update Sun Feb  5 20:58:28 2017 Antonin Rapini
+** Last update Tue Feb  7 16:27:17 2017 Antonin Rapini
 */
 
 #include <signal.h>
@@ -33,6 +33,6 @@ int			my_joingame(t_game *game)
     }
   g_global = 0;
   game->my_turn = 0;
-  my_putstr("successfully connected\n");
+  my_putstr("successfully connected\n\n");
   return (my_gameloop(game));
 }

@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Fri Feb  3 02:56:12 2017 Antonin Rapini
-** Last update Sun Feb  5 20:58:07 2017 Antonin Rapini
+** Last update Tue Feb  7 16:27:05 2017 Antonin Rapini
 */
 
 #include <stdlib.h>
@@ -20,7 +20,7 @@ void my_savepid(int sig, siginfo_t *siginfo, void *context)
   if (sig == SIGUSR1 && context == NULL)
     {
     }
-  my_putstr("enemy connected\n");
+  my_putstr("enemy connected\n\n");
   g_global = siginfo->si_pid;
 }
 
