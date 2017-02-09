@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat Feb  4 14:16:04 2017 Antonin Rapini
-** Last update Sun Feb  5 21:14:43 2017 Antonin Rapini
+** Last update Thu Feb  9 12:12:30 2017 Antonin Rapini
 */
 
 #include "my_game.h"
@@ -16,16 +16,25 @@
 int	my_gameloop(t_game *game)
 {
   int	gamestatus;
+  int	round;
 
+  round = 0;
+  my_showgame(game);
   while ((gamestatus = my_checkgamestatus(game)) == 2)
     {
-      my_showgame(game);
       if (game->my_turn)
 	my_play(game);
       else
 	my_waitforinput(game);
+      round++;
+      if (round == 2)
+	{
+	  my_showgame(game);
+	  round = 0;
+	}
     }
-  my_showgame(game);
+  if (round != 0)
+    my_showgame(game);
   if (gamestatus == 1)
     my_putstr("\nI won\n");
   else

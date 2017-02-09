@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat Feb  4 15:34:21 2017 Antonin Rapini
-** Last update Sun Feb  5 21:10:21 2017 Antonin Rapini
+** Last update Thu Feb  9 11:59:35 2017 Antonin Rapini
 */
 
 #include <stdio.h>
@@ -75,7 +75,7 @@ void			my_waitforinput(t_game *game)
   sa.sa_handler = &inputsignal_handler;
   sigaction(SIGUSR1, &sa, NULL);
   sigaction(SIGUSR2, &sa, NULL);
-  my_putstr("\nwaiting for enemy's attack...\n");
+  my_putstr("waiting for enemy's attack...\n");
   while (g_global == 0){}
   printf("b");
   fflush(stdout);

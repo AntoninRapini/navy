@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat Feb  4 15:34:21 2017 Antonin Rapini
-** Last update Thu Feb  9 11:46:50 2017 Antonin Rapini
+** Last update Thu Feb  9 12:02:14 2017 Antonin Rapini
 */
 
 #include <unistd.h>
@@ -100,15 +100,15 @@ void		my_play(t_game *game)
   playing = 1;
   while (playing)
     {
-      my_putstr("\nattack: ");
+      my_putstr("attack: ");
       buffer = get_next_line(0);
       if (my_strlen(buffer) != 2)
-	my_putstr("wrong position");
+	my_putstr("wrong position\n");
       else
 	{
 	  target = get_targetpos(buffer);
 	  if (target.x < 1 || target.y < 1 || target.x > 8 || target.y > 8)
-	    my_putstr("wrong position");
+	    my_putstr("wrong position\n");
 	  else
 	    {
 	      my_shoot(target, game, buffer);
