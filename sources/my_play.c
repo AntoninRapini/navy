@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat Feb  4 15:34:21 2017 Antonin Rapini
-** Last update Sun Feb  5 21:17:24 2017 Antonin Rapini
+** Last update Thu Feb  9 11:46:50 2017 Antonin Rapini
 */
 
 #include <unistd.h>
@@ -17,7 +17,7 @@
 #include "utils.h"
 #include "get_next_line.h"
 
-void	get_answer(int sig)
+void get_answer(int sig)
 {
   if (sig == SIGUSR1)
     g_global = 1;
@@ -25,7 +25,7 @@ void	get_answer(int sig)
     g_global = 2;
 }
 
-void	get_feedback(t_vector2 pos, t_game *game, char *buffer)
+void			get_feedback(t_vector2 pos, t_game *game, char *buffer)
 {
   struct sigaction	sa;
 
@@ -33,7 +33,7 @@ void	get_feedback(t_vector2 pos, t_game *game, char *buffer)
   sa.sa_handler = &get_answer;
   sigaction(SIGUSR1, &sa, NULL);
   sigaction(SIGUSR2, &sa , NULL);
-  while (g_global == 0){}
+  while (g_global == 0);
   my_putstr(buffer);
   if (g_global == 1)
     {
@@ -74,6 +74,23 @@ void	my_shoot(t_vector2 target, t_game *game, char *buffer)
   get_feedback(target, game, buffer);
 }
 
+t_vector2	get_targetpos(char *buffer)
+{
+  t_vector2	target;
+
+  if (buffer[0] >= 'A' && buffer[0] <= 'Z')
+    {
+      target.x = buffer[0] - 64;
+      target.y = buffer[1] - 48;
+    }
+  else
+    {
+      target.x = buffer[1] - 64;
+      target.y = buffer[0] - 48;
+    }
+  return (target);
+}
+
 void		my_play(t_game *game)
 {
   char		*buffer;
@@ -81,27 +98,17 @@ void		my_play(t_game *game)
   int		playing;
 
   playing = 1;
-  my_putchar('\n');
   while (playing)
     {
-      my_putstr("attack: ");
+      my_putstr("\nattack: ");
       buffer = get_next_line(0);
       if (my_strlen(buffer) != 2)
-	my_putstr("wrong position\n");
+	my_putstr("wrong position");
       else
 	{
-	  if (buffer[0] >= 'A' && buffer[0] <= 'Z')
-	    {
-	      target.x = buffer[0] - 64;
-	      target.y = buffer[1] - 48;
-	    }
-	  else
-	    {
-	      target.x = buffer[1] - 64;
-	      target.y = buffer[0] - 48;
-	    }
+	  target = get_targetpos(buffer);
 	  if (target.x < 1 || target.y < 1 || target.x > 8 || target.y > 8)
-	    my_putstr("wrong position\n");
+	    my_putstr("wrong position");
 	  else
 	    {
 	      my_shoot(target, game, buffer);

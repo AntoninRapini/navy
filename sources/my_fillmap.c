@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat Feb  4 03:25:40 2017 Antonin Rapini
-** Last update Sun Feb  5 17:54:30 2017 Antonin Rapini
+** Last update Thu Feb  9 11:46:18 2017 Antonin Rapini
 */
 
 #include <unistd.h>
@@ -14,39 +14,54 @@
 #include "utils.h"
 #include "vector2.h"
 
-int	my_placeboat(int i, t_vector2 start, t_vector2 end, char **map)
+int	my_placevertical(int dir, int i, t_vector2 start, char **map)
 {
   int	j;
-  int	dir;
 
   j = 0;
+  while (j < i + 2)
+    {
+      if (map[start.y + 1][start.x + 2 + (1 * start.x + j * dir) + j * dir] != '.')
+	return (1);
+      map[start.y + 1][start.x + 2 + (1 * start.x + j * dir) + j * dir] = i + 2 + 48;
+      j++;
+    }
+  return (0);
+}
+
+int	my_placehorizontal(int dir, int i, t_vector2 start, char **map)
+{
+  int	j;
+
+  j = 0;
+  while (j < i + 2)
+    {
+      if (map[start.y + 1 + j * dir][start.x + 2 + (1 * start.x)] != '.')
+	return (1);
+      map[start.y + 1 + j * dir][start.x + 2 + (1 * start.x)] = i + 2 + 48;
+      j++;
+    }
+  return (0);
+}
+
+int	my_placeboat(int i, t_vector2 start, t_vector2 end, char **map)
+{
+  int	dir;
+
   if (start.x != end.x)
     {
       dir = start.x < end.x ? 1 : -1;
       if (my_abs(start.x - end.x) != i + 1)
 	return (1);
-      while (j < i + 2)
-	{
-	  if (map[start.y + 1][start.x + 2 + (1 * start.x + j * dir) + j * dir] != '.')
-	    return (1);
-	  map[start.y + 1][start.x + 2 + (1 * start.x + j * dir) + j * dir] = i + 2 + 48;
-	  j++;
-	}
+      return (my_placevertical(dir, i, start, map));
     }
   else
     {
       dir = start.y < end.y ? 1 : -1;
       if (my_abs(start.y - end.y) != i + 1)
 	return (1);
-      while (j < i + 2)
-	{
-	  if (map[start.y + 1 + j * dir][start.x + 2 + (1 * start.x)] != '.')
-	    return (1);
-	  map[start.y + 1 + j * dir][start.x + 2 + (1 * start.x)] = i + 2 + 48;
-	  j++;
-	}
+      return (my_placehorizontal(dir, i, start, map));
     }
-  return (0);
 }
 
 int		my_fillmap(char **map, char *path)
