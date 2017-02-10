@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat Feb  4 14:16:04 2017 Antonin Rapini
-** Last update Thu Feb  9 12:12:30 2017 Antonin Rapini
+** Last update Fri Feb 10 18:37:15 2017 Antonin Rapini
 */
 
 #include "my_game.h"
@@ -35,7 +35,7 @@ int	my_gameloop(t_game *game)
     }
   if (round != 0)
     my_showgame(game);
-  if (gamestatus == 1)
+  if (gamestatus == 0)
     my_putstr("\nI won\n");
   else
     my_putstr("\nEnemy won\n");
