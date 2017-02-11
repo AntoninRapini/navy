@@ -5,7 +5,7 @@
 ## Login   <antonin.rapini@epitech.net>
 ## 
 ## Started on  Wed Feb  1 18:39:58 2017 Antonin Rapini
-## Last update Sat Feb  4 15:44:55 2017 Antonin Rapini
+## Last update Sat Feb 11 02:18:55 2017 Antonin Rapini
 ##
 
 CFLAGS	+= -Wall -Werror -Wextra
@@ -19,6 +19,7 @@ SRC	= 	utils/my_show_wordtab.c	\
 		utils/my_put_nbr.c	\
 		utils/my_abs.c		\
 		utils/my_strlen.c	\
+		utils/my_str_to_pos.c	\
 		sources/my_create_emptymap.c	\
 		sources/my_printpid.c	\
 		sources/my_hostgame.c	\
