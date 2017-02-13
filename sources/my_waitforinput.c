@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat Feb  4 15:34:21 2017 Antonin Rapini
-** Last update Sat Feb 11 02:25:56 2017 Antonin Rapini
+** Last update Mon Feb 13 18:04:24 2017 Antonin Rapini
 */
 
 #include <signal.h>
@@ -41,7 +41,8 @@ void			inputsignal_handler
   static t_vector2	hitpos = {0, 0};
   static int		phase = 0;
 
-  if (context){}
+  if (context)
+    context = NULL;
   if (signum == SIGUSR1)
     {
       if (phase == 0)
@@ -53,14 +54,14 @@ void			inputsignal_handler
   else if (signum == SIGUSR2)
     {
       phase++;
-      kill(siginfo->si_pid, SIGUSR1);
       g_global = phase == 1 ? hitpos.x : hitpos.y;
-    }
-  if (phase == 2)
-    {
-      phase = 0;
-      hitpos.x = 0;
-      hitpos.y = 0;
+      if (phase == 2)
+	{
+	  phase = 0;
+	  hitpos.x = 0;
+	  hitpos.y = 0;
+	}
+      kill(siginfo->si_pid, SIGUSR1);
     }
 }
 
