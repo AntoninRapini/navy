@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat Feb  4 05:43:27 2017 Antonin Rapini
-** Last update Thu Feb  9 11:50:05 2017 Antonin Rapini
+** Last update Mon Feb 13 16:52:34 2017 Antonin Rapini
 */
 
 #include <signal.h>
@@ -28,9 +28,7 @@ int			my_joingame(t_game *game)
   sa.sa_handler = &my_getanswer;
   sigaction(SIGUSR1, &sa, NULL);
   kill(game->enemypid, SIGUSR1);
-  while (g_global == 0)
-    {
-    }
+  while (g_global == 0);
   g_global = 0;
   game->my_turn = 0;
   my_putstr("successfully connected\n\n");

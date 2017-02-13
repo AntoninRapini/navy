@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Fri Feb  3 02:56:12 2017 Antonin Rapini
-** Last update Thu Feb  9 11:51:02 2017 Antonin Rapini
+** Last update Mon Feb 13 16:52:29 2017 Antonin Rapini
 */
 
 #include <stdlib.h>
@@ -32,9 +32,7 @@ int			my_hostgame(t_game *game)
   sa.sa_sigaction = &my_savepid;
   sa.sa_flags = SA_SIGINFO;
   sigaction(SIGUSR1, &sa, NULL);
-  while (g_global == 0)
-    {
-    }
+  while (g_global == 0);
   game->enemypid = g_global;
   g_global = 0;
   game->my_turn = 1;
