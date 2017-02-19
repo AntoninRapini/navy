@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat Feb  4 15:34:21 2017 Antonin Rapini
-** Last update Mon Feb 13 18:04:24 2017 Antonin Rapini
+** Last update Sun Feb 19 19:48:39 2017 Antonin Rapini
 */
 
 #include <signal.h>
@@ -21,7 +21,7 @@ int check_position(t_vector2 pos, t_game *game)
   my_putchar(pos.x + 64);
   my_putchar(pos.y + 48);
   if (game->mymap[pos.y + 1][pos.x + 1 + (1 * (pos.x - 1))] > '0'
-       && game->mymap[pos.y + 1][pos.x + 1 + (1 * (pos.x - 1))] <= '5')
+      && game->mymap[pos.y + 1][pos.x + 1 + (1 * (pos.x - 1))] <= '5')
     {
       game->mymap[pos.y + 1][pos.x + 1 + (1 * (pos.x - 1))] = 'x';
       my_putstr(": hit\n\n");
@@ -29,7 +29,8 @@ int check_position(t_vector2 pos, t_game *game)
     }
   else
     {
-      game->mymap[pos.y + 1][pos.x + 1 + (1 * (pos.x - 1))] = 'o';
+      if (game->mymap[pos.y + 1][pos.x + 1 + (1 * (pos.x - 1))] != 'x')
+	game->mymap[pos.y + 1][pos.x + 1 + (1 * (pos.x - 1))] = 'o';
       my_putstr(": missed\n\n");
       return (SIGUSR1);
     }
