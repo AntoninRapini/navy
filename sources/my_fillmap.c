@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat Feb  4 03:25:40 2017 Antonin Rapini
-** Last update Thu Feb  9 11:46:18 2017 Antonin Rapini
+** Last update Sun Feb 19 19:40:41 2017 Antonin Rapini
 */
 
 #include <unistd.h>
@@ -21,9 +21,11 @@ int	my_placevertical(int dir, int i, t_vector2 start, char **map)
   j = 0;
   while (j < i + 2)
     {
-      if (map[start.y + 1][start.x + 2 + (1 * start.x + j * dir) + j * dir] != '.')
+      if (map[start.y + 1][start.x + 2 +
+			   (1 * start.x + j * dir) + j * dir] != '.')
 	return (1);
-      map[start.y + 1][start.x + 2 + (1 * start.x + j * dir) + j * dir] = i + 2 + 48;
+      map[start.y + 1][start.x + 2 +
+		       (1 * start.x + j * dir) + j * dir] = i + 2 + 48;
       j++;
     }
   return (0);
